@@ -6,9 +6,12 @@
 #include <iostream>
 #include <string>
 
-#include <pujOpenGL/KeyboardTrackballCamera.h>
-#include <pujOpenGL/WavefrontOBJ.h>
-#include <pujOpenGL/World.h>
+// #include <pujOpenGL/KeyboardTrackballCamera.h>
+#include "../lib/pujOpenGL/KeyboardTrackballCamera.h"
+// #include <pujOpenGL/WavefrontOBJ.h>
+#include "../lib/pujOpenGL/WavefrontOBJ.h"
+// #include <pujOpenGL/World.h>
+#include "../lib/pujOpenGL/World.h"
 
 int main( int argc, char** argv )
 {

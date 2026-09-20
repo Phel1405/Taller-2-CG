@@ -98,6 +98,20 @@ KeyEvent( int k, int x, int y, bool special, bool up )
 
 // -------------------------------------------------------------------------
 void pujOpenGL::BaseCamera::
+MouseMotionEvent( int x, int y )
+{
+  // Do nothing
+}
+
+// -------------------------------------------------------------------------
+void pujOpenGL::BaseCamera::
+MouseButtonEvent( int button, int state, int x, int y )
+{
+  // Do nothing
+}
+
+// -------------------------------------------------------------------------
+void pujOpenGL::BaseCamera::
 Draw( ) const
 {
   gluLookAt(

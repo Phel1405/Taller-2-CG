@@ -8,6 +8,7 @@
 
 // #include <pujOpenGL/KeyboardTrackballCamera.h>
 #include "../lib/pujOpenGL/KeyboardTrackballCamera.h"
+#include "../lib/pujOpenGL/MouseTrackballCamera.h"
 // #include <pujOpenGL/WavefrontOBJ.h>
 #include "../lib/pujOpenGL/WavefrontOBJ.h"
 // #include <pujOpenGL/World.h>
@@ -29,10 +30,15 @@ int main( int argc, char** argv )
   pujOpenGL::WavefrontOBJ mesh( argv[ 1 ] );
   world->AddNode( mesh );
 
-  // Camera
-  pujOpenGL::KeyboardTrackballCamera camera;
-  camera.InitializeFromBoundingBox( );
-  world->SetCamera( camera );
+  // Keyboard Camera
+  pujOpenGL::KeyboardTrackballCamera keyboard_camera;
+  keyboard_camera.InitializeFromBoundingBox( );
+  world->SetCamera( keyboard_camera );
+
+  // // Mouse Camera
+  // pujOpenGL::MouseTrackballCamera mouse_camera;
+  // mouse_camera.InitializeFromBoundingBox( );
+  // world->SetCamera( mouse_camera );
 
   // Initialize world and start
   world->Init( argc, argv, "WavefrontOBJ viewer", 500, 500 );

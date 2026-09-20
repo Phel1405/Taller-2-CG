@@ -8,9 +8,11 @@
 */
 
 #include "MouseTrackballCamera.h"
+#include <GL/freeglut_std.h>
 #include <cmath>
 #include <cstdlib>
 #include <GL/gl.h>
+#include <GL/glut.h>
 
 // -------------------------------------------------------------------------
 pujOpenGL::MouseTrackballCamera::
@@ -38,7 +40,25 @@ ConfigureFromBounds( const float* b )
 void pujOpenGL::MouseTrackballCamera::
 MouseButtonEvent( int button, int state, int x, int y )
 {
+    if(button == GLUT_LEFT_BUTTON )
+    {
+        if(state == GLUT_DOWN)
+        {
+           this->_isDragging = true;
+           this->_initialMouseX = x;
+           this->_initialMouseY = y;
 
+           glutPostRedisplay();
+
+        }else if(state == GLUT_UP)
+        {
+            this->_isDragging = false;
+
+            this->Phi = 0;
+            this->Theta = 0;
+            this->Radius = 0;
+        }
+    }
 }
 
 // -------------------------------------------------------------------------

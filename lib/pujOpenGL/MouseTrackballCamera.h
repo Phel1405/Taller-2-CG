@@ -37,6 +37,10 @@ namespace pujOpenGL
     float DeltaRadius { 0 };
     float OffRadius   { 0 };
 
+    bool _isDragging { false };
+    bool _initialMouseX { 0 };
+    bool _initialMouseY { 0 };
+
     std::array< float, 16 > Transform
       {
 	1, 0, 0, 0,

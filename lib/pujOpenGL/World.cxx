@@ -4,6 +4,7 @@
 
 #include "World.h"
 
+#include <GL/freeglut_std.h>
 #include <GL/gl.h>
 #include <GL/glut.h>
 
@@ -141,10 +142,11 @@ Start( )
   glutSpecialFunc( Self::_CB_SpecialKeyboardDown );
   glutSpecialUpFunc( Self::_CB_SpecialKeyboardUp );
 
+  // Mouse related
+  glutMouseFunc( Self::_CB_MouseButtonPress );
+  glutMotionFunc( Self::_CB_MouseMotion );
+  glutPassiveMotionFunc( Self::_CB_MouseMotion );
   /* TODO
-     glutMouseFunc(func)
-     glutMotionFunc(func)
-     glutPassiveMotionFunc(func)
      glutMouseWheelFunc(func)
      glutEntryFunc(func)
 
@@ -253,6 +255,29 @@ _cb_keyboard( int k, int x, int y, bool special, bool up )
 
 // -------------------------------------------------------------------------
 void pujOpenGL::World::
+_cb_mouse_button_press( int button, int state, int x, int y )
+{
+  if( this->Camera.first != nullptr )
+  {
+    this->Camera.first->MouseButtonEvent( button, state, x, y );
+    glutPostRedisplay( );
+  } // end if
+}
+
+// -------------------------------------------------------------------------
+void pujOpenGL::World::
+_cb_mouse_motion( int x, int y )
+{
+  if( this->Camera.first != nullptr )
+  {
+    this->Camera.first->MouseMotionEvent( x, y );
+    glutPostRedisplay( );
+  } // end if
+}
+
+
+// -------------------------------------------------------------------------
+void pujOpenGL::World::
 _CB_Display( )
 {
   if( Self::Get( ) != nullptr )
@@ -330,6 +355,22 @@ _CB_SpecialKeyboardUp( int k, int x, int y )
 {
   if( Self::Get( ) != nullptr )
     Self::Get( )->_cb_keyboard( k, x, y, true, true );
+}
+
+// -------------------------------------------------------------------------
+void pujOpenGL::World::
+_CB_MouseButtonPress( int button, int state, int x, int y )
+{
+  if( Self::Get( ) != nullptr )
+    Self::Get( )->_cb_mouse_button_press( button, state, x, y );
+}
+
+// -------------------------------------------------------------------------
+void pujOpenGL::World::
+_CB_MouseMotion( int x, int y )
+{
+  if( Self::Get( ) != nullptr )
+    Self::Get( )->_cb_mouse_motion( x, y );
 }
 
 // eof - World.cxx

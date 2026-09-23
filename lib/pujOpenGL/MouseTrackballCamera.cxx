@@ -47,17 +47,18 @@ MouseButtonEvent( int button, int state, int x, int y )
 
            std::cout << "MouseButtonEvent: button=" << button << " state=" << state << " x=" << x << " y=" << y << std::endl;
 
-           glutPostRedisplay();
-
         }else if(state == GLUT_UP)
         {
             this->_isDragging = false;
 
-            this->Phi = 0;
-            this->Theta = 0;
-            this->Radius = 0;
-
             std::cout << "MouseButtonEvent: button=" << button << " state=" << state << " x=" << x << " y=" << y << std::endl;
+        }
+    }else if(state == GLUT_MIDDLE_BUTTON){
+        std::cout << "MouseButtonEvent: button=" << button << " state=" << state << " x=" << x << " y=" << y << std::endl;
+        if(state == 3){
+
+        }else if(state == 4){
+
         }
     }
 }
@@ -68,8 +69,28 @@ MouseMotionEvent( int x, int y )
 {
     if(this->_isDragging)
     {
-        std::cout << "MouseMotionEvent: x=" << x << " y=" << y << std::endl;
-        this->_Update( );
+        int dx = x - this->_initialMouseX;
+        int dy = y - this->_initialMouseY;
+
+        float sens = 0.005f;
+
+        if(dy!=0){
+            this->Phi = static_cast<float>(dy) * sens;
+            this->_Update();
+        }
+
+        if(dx!=0){
+            this->Theta = static_cast<float>(dx) * sens;
+            this->_Update();
+        }
+
+        // std::cout << "MouseMotionEvent: x=" << x << " y=" << y << std::endl;
+        // this->_Update( );
+
+        this->_initialMouseX = x;
+        this->_initialMouseY = y;
+
+        glutPostRedisplay( );
     }
 }
 

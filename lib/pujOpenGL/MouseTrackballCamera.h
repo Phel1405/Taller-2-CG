@@ -38,8 +38,8 @@ namespace pujOpenGL
     float OffRadius   { 0 };
 
     bool _isDragging { false };
-    bool _initialMouseX { 0 };
-    bool _initialMouseY { 0 };
+    int _initialMouseX { 0 };
+    int _initialMouseY { 0 };
 
     std::array< float, 16 > Transform
       {

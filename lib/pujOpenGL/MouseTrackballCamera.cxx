@@ -2,17 +2,14 @@
 // @author Leonardo Florez-Valencia (florez-l@javeriana.edu.co)
 // =========================================================================
 
-
-/* TODO
-   #include <iostream>
-*/
-
 #include "MouseTrackballCamera.h"
 #include <GL/freeglut_std.h>
 #include <cmath>
 #include <cstdlib>
 #include <GL/gl.h>
 #include <GL/glut.h>
+
+#include <iostream>
 
 // -------------------------------------------------------------------------
 pujOpenGL::MouseTrackballCamera::
@@ -48,6 +45,8 @@ MouseButtonEvent( int button, int state, int x, int y )
            this->_initialMouseX = x;
            this->_initialMouseY = y;
 
+           std::cout << "MouseButtonEvent: button=" << button << " state=" << state << " x=" << x << " y=" << y << std::endl;
+
            glutPostRedisplay();
 
         }else if(state == GLUT_UP)
@@ -57,6 +56,8 @@ MouseButtonEvent( int button, int state, int x, int y )
             this->Phi = 0;
             this->Theta = 0;
             this->Radius = 0;
+
+            std::cout << "MouseButtonEvent: button=" << button << " state=" << state << " x=" << x << " y=" << y << std::endl;
         }
     }
 }
@@ -65,7 +66,11 @@ MouseButtonEvent( int button, int state, int x, int y )
 void pujOpenGL::MouseTrackballCamera::
 MouseMotionEvent( int x, int y )
 {
-
+    if(this->_isDragging)
+    {
+        std::cout << "MouseMotionEvent: x=" << x << " y=" << y << std::endl;
+        this->_Update( );
+    }
 }
 
 // -------------------------------------------------------------------------

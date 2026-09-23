@@ -31,14 +31,14 @@ int main( int argc, char** argv )
   world->AddNode( mesh );
 
   // Keyboard Camera
-  pujOpenGL::KeyboardTrackballCamera keyboard_camera;
-  keyboard_camera.InitializeFromBoundingBox( );
-  world->SetCamera( keyboard_camera );
+  // pujOpenGL::KeyboardTrackballCamera keyboard_camera;
+  // keyboard_camera.InitializeFromBoundingBox( );
+  // world->SetCamera( keyboard_camera );
 
-  // // Mouse Camera
-  // pujOpenGL::MouseTrackballCamera mouse_camera;
-  // mouse_camera.InitializeFromBoundingBox( );
-  // world->SetCamera( mouse_camera );
+  // Mouse Camera
+  pujOpenGL::MouseTrackballCamera mouse_camera;
+  mouse_camera.InitializeFromBoundingBox( );
+  world->SetCamera( mouse_camera );
 
   // Initialize world and start
   world->Init( argc, argv, "WavefrontOBJ viewer", 500, 500 );

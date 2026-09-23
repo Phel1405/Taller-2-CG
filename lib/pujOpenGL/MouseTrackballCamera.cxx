@@ -53,12 +53,19 @@ MouseButtonEvent( int button, int state, int x, int y )
 
             std::cout << "MouseButtonEvent: button=" << button << " state=" << state << " x=" << x << " y=" << y << std::endl;
         }
-    }else if(state == GLUT_MIDDLE_BUTTON){
+    }else if(button == 3 || button == 4){
         std::cout << "MouseButtonEvent: button=" << button << " state=" << state << " x=" << x << " y=" << y << std::endl;
-        if(state == 3){
+        if(state == GLUT_DOWN){
+            float zoomFactor = 3.0f;
+            if( button == 3){
+                this->DeltaRadius = -zoomFactor;
+            }else if( button == 4){
+                this->DeltaRadius = zoomFactor;
+            }
 
-        }else if(state == 4){
+            this->_Update();
 
+            glutPostRedisplay();
         }
     }
 }
